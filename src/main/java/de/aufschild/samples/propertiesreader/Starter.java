@@ -8,6 +8,7 @@
 package de.aufschild.samples.propertiesreader;
 
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.util.Assert;
 
 /** 
  * 
@@ -26,6 +27,10 @@ public class Starter {
 	public static void main(String[] args) {
 		ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(CONFIGLOCATION);
 		
+		MessageProvider provider = context.getBean(MessageProvider.class);
+		Assert.notNull(provider);
+		
+		System.out.println("1: " + provider.getProp("1"));
 	}
 
 }
