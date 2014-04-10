@@ -7,6 +7,8 @@
  */ 
 package de.aufschild.samples.propertiesreader;
 
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.util.Assert;
 
@@ -17,6 +19,8 @@ import org.springframework.util.Assert;
  * created: 10.04.2014
  *
  */
+@Configuration
+@PropertySource("classpath:messages.properties")
 public class Starter {
 
 	static String CONFIGLOCATION = "classpath:applicationContext.xml";

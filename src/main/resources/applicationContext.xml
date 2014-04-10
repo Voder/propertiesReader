@@ -11,6 +11,4 @@
 	<context:component-scan base-package="de.aufschild.samples.propertiesreader" />
 	<context:annotation-config />
 	
-<!-- 	<context:property-placeholder location="classpath:messages.properties" /> -->
-    <util:properties id="messages" location="classpath:messages.properties" />
 </beans>

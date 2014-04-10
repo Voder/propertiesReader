@@ -1,21 +1,20 @@
 package de.aufschild.samples.propertiesreader;
 
-import java.util.Properties;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Component;
 
 @Component
 public class MessageProvider {
 
 	@Autowired
-	private Properties messages;
+	private Environment env;
 	@Value("default")
 	private String defaultValue;
 	
 	public String getProp(String key) {
-		String val = messages.getProperty(key);
+		String val = env.getProperty(key);
 		return val == null ? defaultValue : val;
 	}
 	
