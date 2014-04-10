@@ -31,6 +31,11 @@ public class Starter {
 		Assert.notNull(provider);
 		
 		System.out.println("1: " + provider.getProp("1"));
+		System.out.println("2: " + provider.getProp("2"));
+		System.out.println("3: " + provider.getProp("3"));
+		System.out.println("4: " + provider.getProp("4"));
+		
+		context.close();
 	}
 
 }
