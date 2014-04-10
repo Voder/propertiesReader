@@ -4,41 +4,50 @@
  * Proprietary and confidential
  * Written by Volker Aufschild <mail@volker-aufschild.de>
  *
- */ 
+ */
 package de.aufschild.samples.propertiesreader;
 
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.util.Assert;
 
-/** 
+/**
  * 
  * @author Volker Aufschild <mail@volker-aufschild.de>
  * 
- * created: 10.04.2014
- *
+ *         created: 10.04.2014
+ * 
  */
 @Configuration
-@PropertySource("classpath:messages.properties")
+@PropertySource({ "classpath:messages.properties",
+		"classpath:messages_override.properties" })
 public class Starter {
 
 	static String CONFIGLOCATION = "classpath:applicationContext.xml";
-	
+
+	@Bean
+	public static PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer() {
+		return new PropertySourcesPlaceholderConfigurer();
+	}
+
 	/**
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(CONFIGLOCATION);
-		
+		ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(
+				CONFIGLOCATION);
+
 		MessageProvider provider = context.getBean(MessageProvider.class);
 		Assert.notNull(provider);
-		
+
 		System.out.println("1: " + provider.getProp("1"));
 		System.out.println("2: " + provider.getProp("2"));
 		System.out.println("3: " + provider.getProp("3"));
 		System.out.println("4: " + provider.getProp("4"));
-		
+
 		context.close();
 	}
 

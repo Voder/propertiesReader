@@ -10,7 +10,7 @@ public class MessageProvider {
 
 	@Autowired
 	private Environment env;
-	@Value("default")
+	@Value("${default}")
 	private String defaultValue;
 	
 	public String getProp(String key) {
